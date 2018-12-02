@@ -27,6 +27,30 @@ TEST_CASE("Initialize the String", "[string], [constructor]")
     }
 }
 
+TEST_CASE("Size of a string", "[string], [size]")
+{
+    SECTION("Size of a string with many characters")
+    {
+        String str("Hello!");
+        unsigned int size = str.size();
+        REQUIRE(size == 6);
+    }
+
+    SECTION("Size of a string with one character")
+    {
+        String str("1");
+        unsigned int size = str.size();
+        REQUIRE(size == 1);
+    }
+
+    SECTION("Size of a string with no characters")
+    {
+        String str;
+        unsigned int size = str.size();
+        REQUIRE(size == 0);
+    }
+}
+
 TEST_CASE("Splitting a string", "[string], [operations], [split]")
 {
     SECTION("Split with one dilimeter comma of a string with commas")
