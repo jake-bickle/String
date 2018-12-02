@@ -91,7 +91,7 @@ TEST_CASE("Splitting a string", "[string], [operations], [split]")
     {
         String str;
         std::vector<String> tokens = str.split("/, $");
-        REQUIRE(tokens[0] == "");
+        REQUIRE(tokens.empty());
     }
 
     SECTION("Split string with a string of uninitialized values")
