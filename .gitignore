@@ -2,5 +2,5 @@ a.out
 *.sw?
 *.gch
 *.o
-run_tests
-debug_grounds
+tests/debug/run_tests
+debug_grounds/*
