@@ -97,7 +97,7 @@ bool String::operator<= (const char* rhs) const{
 }
 
 bool String::operator> (const String& rhs) const{
-    return !(*this <= rhs.cstring);
+    return !(*this <= rhs);
 }
 
 bool String::operator> (const char* rhs) const{
