@@ -18,6 +18,8 @@ class String{
 
         std::vector<String> split(const String& delimeter);
         std::vector<String> split(const char* delimeter);
+        bool contains(const String& characters) const;
+        bool contains(const char* characters) const;
 
         String& operator= (const String& rhs);
         String& operator= (const char* rhs);

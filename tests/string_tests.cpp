@@ -43,14 +43,14 @@ TEST_CASE("Splitting a string", "[string], [operations], [split]")
     {
         String str("this is a test");
         std::vector<String> tokens = str.split(",");
-        REQUIRE(tokens.empty());
+        REQUIRE(tokens[0] == "this is a test");
         REQUIRE(str == "this is a test");
     }
 
     SECTION("Split with multiple dilimeters of a string with said dilimeters")
     {
         String str("he/l,lo w$orld");
-        std::vector<String> tokens = str.split("/, $");
+        std::vector<String> tokens = str.split("/$ ,");
         REQUIRE(tokens[0] == "he");
         REQUIRE(tokens[1] == "l");
         REQUIRE(tokens[2] == "lo");
@@ -63,38 +63,43 @@ TEST_CASE("Splitting a string", "[string], [operations], [split]")
     {
         String str("Helloworld!");
         std::vector<String> tokens = str.split("/, $");
-        REQUIRE(tokens.empty());
+        REQUIRE(tokens[0] == "Helloworld!");
         REQUIRE(str == "Helloworld!");
     }
 
-    SECTION("Split string with dilimeter of another string")
+    SECTION("Split string with dilimeters in another string")
     {
-        String str;
+        String str("he/l,lo w$orld");
         String dilimeters("/, $");
         std::vector<String> tokens = str.split(dilimeters);
-        REQUIRE(tokens.empty());
+        REQUIRE(tokens[0] == "he");
+        REQUIRE(tokens[1] == "l");
+        REQUIRE(tokens[2] == "lo");
+        REQUIRE(tokens[3] == "w");
+        REQUIRE(tokens[4] == "orld");
+        REQUIRE(str == "he/l,lo w$orld");
     }
 
     SECTION("Split string with no given dilimeters")
     {
         String str("Hello, world!");
         std::vector<String> tokens = str.split("");
-        REQUIRE(tokens.empty());
+        REQUIRE(tokens[0] == "Hello, world!");
     }
 
-    SECTION("Split string of uninitalized values");
+    SECTION("Split string of uninitialized values");
     {
         String str;
         std::vector<String> tokens = str.split("/, $");
-        REQUIRE(tokens.empty());
+        REQUIRE(tokens[0] == "");
     }
 
-    SECTION("Split string with a string of uninitalized values")
+    SECTION("Split string with a string of uninitialized values")
     {
         String str("Hello, world!");
         String uninit;
         std::vector<String> tokens = str.split(uninit);
-        REQUIRE(tokens.empty());
+        REQUIRE(tokens[0] == "Hello, world!");
     }
 }
 

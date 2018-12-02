@@ -2,17 +2,17 @@
 
 String::String()
     : cstring(nullptr) {
-    assign_cstring("");
+    *this = "";
 }
 
 String::String(const char* cstring)
     : cstring(nullptr) {
-    assign_cstring(cstring);
+    *this = cstring;
 }
 
 String::String(const String& str)
     : cstring(nullptr) {
-    assign_cstring(str.cstring);
+    *this = str;
 }
 
 String::~String(){
@@ -25,20 +25,25 @@ void String::assign_cstring(const char* copy_from){
     strcpy(cstring, copy_from);
 }
 
-//TODO FInish this
-std::vector<String> String::split(const String& delimeter = ","){
+std::vector<String> String::split(const String& delimeter){
     String copy(cstring);
     std::vector<String> tokens;
-    String first_token = strtok(copy.cstring, delimeter.cstring);
-    tokens.push_back(first_token);
-    while (copy.cstring != NULL){
-        String token(strtok(NULL, delimeter.cstring));
+    char* ctoken = strtok(copy.cstring, delimeter.cstring);
+    String token(ctoken); 
+
+    if (!ctoken)
+        return tokens;
+
+    while (ctoken != NULL){
         tokens.push_back(token);
+        ctoken = strtok(NULL, delimeter.cstring); 
+        token = ctoken;
     }
+
     return tokens;
 }
 
-std::vector<String> String::split(const char* delimeter = ","){
+std::vector<String> String::split(const char* delimeter){
     return this->split(String(delimeter));
 }
 
@@ -48,7 +53,10 @@ String& String::operator= (const String& rhs){
 }
 
 String& String::operator= (const char* rhs){
-    assign_cstring(rhs);
+    if (rhs)
+        assign_cstring(rhs);
+    else
+        assign_cstring("");
     return *this;
 }
 

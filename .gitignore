@@ -1,3 +1,6 @@
 a.out
 *.sw?
 *.gch
+obj/*
+tests/debug/run_tests
+debug_grounds
