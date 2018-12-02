@@ -16,8 +16,10 @@ class String{
         String(const char* cstring);
         ~String();
 
-        std::vector<String> split(const String& delimeter);
-        std::vector<String> split(const char* delimeter);
+        unsigned int size() const;
+
+        std::vector<String> split(const String& delimeter) const;
+        std::vector<String> split(const char* delimeter) const;
         bool contains(const String& characters) const;
         bool contains(const char* characters) const;
 

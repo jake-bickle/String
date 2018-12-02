@@ -25,7 +25,11 @@ void String::assign_cstring(const char* copy_from){
     strcpy(cstring, copy_from);
 }
 
-std::vector<String> String::split(const String& delimeter){
+unsigned int String::size() const{
+    return strlen(cstring);
+}
+
+std::vector<String> String::split(const String& delimeter) const{
     String copy(cstring);
     std::vector<String> tokens;
     char* ctoken = strtok(copy.cstring, delimeter.cstring);
@@ -43,9 +47,18 @@ std::vector<String> String::split(const String& delimeter){
     return tokens;
 }
 
-std::vector<String> String::split(const char* delimeter){
+std::vector<String> String::split(const char* delimeter) const{
     return this->split(String(delimeter));
 }
+
+//bool String::contains(const String& characters) const{
+    //return this->containers(characters.cstring);
+//}
+
+//bool String::contains(const char* characters) const{
+
+//}
+
 
 String& String::operator= (const String& rhs){
     assign_cstring(rhs.cstring);
