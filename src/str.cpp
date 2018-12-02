@@ -51,14 +51,13 @@ std::vector<String> String::split(const char* delimeter) const{
     return this->split(String(delimeter));
 }
 
-//bool String::contains(const String& characters) const{
-    //return this->containers(characters.cstring);
-//}
+bool String::contains(const String& characters) const{
+    return this->contains(characters.cstring);
+}
 
-//bool String::contains(const char* characters) const{
-
-//}
-
+bool String::contains(const char* characters) const{
+    return !(strcspn(cstring, characters) == size());
+}
 
 String& String::operator= (const String& rhs){
     assign_cstring(rhs.cstring);

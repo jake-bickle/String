@@ -127,6 +127,39 @@ TEST_CASE("Splitting a string", "[string], [operations], [split]")
     }
 }
 
+TEST_CASE("String contains characters", "[string], [operations], [contains]")
+{
+    SECTION("String contains given cstring characters")
+    {
+        String str("Hello world!");
+        bool contains_characters = str.contains("Hw!$#");
+        REQUIRE(contains_characters);
+    }
+
+    SECTION("String doesn't contain given cstring characters")
+    {
+        String str("Hello world!");
+        bool contains_characters = str.contains(",$3");
+        REQUIRE(!contains_characters);
+    }
+
+    SECTION("String contains given string characters")
+    {
+        String str("Hello world!");
+        String chars("Hw!$#");
+        bool contains_characters = str.contains(chars);
+        REQUIRE(contains_characters);
+    }
+
+    SECTION("String doesn't contain given string characters")
+    {
+        String str("Hello world!");
+        String chars(",$3");
+        bool contains_characters = str.contains(chars);
+        REQUIRE(!contains_characters);
+    }
+}
+
 TEST_CASE("Comparison operators", "[string], [comparison], [equality]")
 {
     SECTION("Strings are equal to each other")
