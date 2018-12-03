@@ -164,5 +164,5 @@ bool String::iterator::operator == (const String::iterator& rhs) const{
 }
 
 bool String::iterator::operator != (const String::iterator& rhs) const{
-    return !(ptr == rhs.ptr);
+    return !(*this == rhs);
 }
