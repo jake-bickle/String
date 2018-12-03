@@ -51,6 +51,15 @@ std::vector<String> String::split(const char* delimeter) const{
     return this->split(String(delimeter));
 }
 
+// TODO : Return to this after creating iterator class
+//String String::lower() const{
+    //String copy(cstring);
+    //for (char& letter : copy.cstring ){
+        //letter = lower_case_ascci_value(letter);
+    //}
+    //return copy;
+//}
+
 bool String::contains(const String& characters) const{
     return this->contains(characters.cstring);
 }
@@ -111,4 +120,16 @@ bool String::operator>= (const String& rhs) const{
 bool String::operator>= (const char* rhs) const{
     return !((*this < String(rhs)));
 }
+
+//String::iterator String::begin() const{
+    //return String::iterator(cstring);
+//}
+
+//String::iterator String::end() const{
+    //// TODO
+//}
+
+//String::iterator(char* ptr)
+    //: ptr(ptr) {}
+
 
