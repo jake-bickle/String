@@ -125,9 +125,10 @@ String::iterator String::begin() const{
     return String::iterator(cstring);
 }
 
-//String::iterator String::end() const{
-    //// TODO
-//}
+String::iterator String::end() const{
+    char* end = cstring + this->size();
+    return String::iterator(end);
+}
 
 String::iterator::iterator(char* ptr)
     : ptr(ptr) {}
@@ -136,4 +137,32 @@ char& String::iterator::operator* (){
     return *ptr;
 }
 
+String::iterator& String::iterator::operator++ (){
+    ++ptr;
+    return *this;
+}
 
+String::iterator String::iterator::operator++ (int){
+    String::iterator copy(ptr);
+    ++ptr;
+    return copy;
+} 
+
+String::iterator& String::iterator::operator-- (){
+    --ptr;
+    return *this;
+}
+
+String::iterator String::iterator::operator-- (int){
+    String::iterator copy(ptr);
+    --ptr;
+    return copy;
+}
+
+bool String::iterator::operator == (const String::iterator& rhs) const{
+    return (ptr == rhs.ptr);
+}
+
+bool String::iterator::operator != (const String::iterator& rhs) const{
+    return !(ptr == rhs.ptr);
+}
