@@ -48,7 +48,9 @@ class String{
         bool operator>= (const String& rhs) const;
         bool operator>= (const char* rhs) const;
 
-        String operator[] (const int index);
+        friend std::ostream& operator<< (std::ostream& os, const String& str);
+        friend std::istream& operator>> (std::istream& is, const String& str);
+
 
         class iterator;
         iterator begin() const;

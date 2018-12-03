@@ -142,6 +142,16 @@ bool String::operator>= (const char* rhs) const{
     return !((*this < String(rhs)));
 }
 
+std::ostream& operator<< (std::ostream& os, const String& str){
+    os << str.cstring;
+    return os;
+}
+
+std::istream& operator>> (std::istream& is, const String& str){
+    is >> str.cstring;
+    return is;
+}
+
 String::iterator String::begin() const{
     return String::iterator(cstring);
 }
