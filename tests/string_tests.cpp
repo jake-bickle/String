@@ -366,4 +366,40 @@ TEST_CASE("Moving iterator forward and backward", "[string], [iterator]")
         --it;
         REQUIRE(*it == '!');
     }
+
+    SECTION("+= operator points to correct location")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        it += 4;
+        REQUIRE(*it == 'o');
+    }
+
+    SECTION("-= operator points to correct location")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.end();
+        it -= 4;
+        REQUIRE(*it == 'r');
+    }
+}
+
+TEST_CASE("Using iterators to modify String", "[string], [iterator], [modifier]")
+{
+    SECTION("Modifying the first letter of the String")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        *it = 'M';
+        REQUIRE(str == "Mello, world!");
+    }
+
+    SECTION("Modfiying the fourth letter of the String")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        it += 3;
+        *it = 'M';
+        REQUIRE(str == "HelMo, world!");
+    }
 }

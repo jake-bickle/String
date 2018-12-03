@@ -126,7 +126,8 @@ String::iterator String::begin() const{
 }
 
 String::iterator String::end() const{
-    char* end = cstring + this->size();
+    unsigned int string_length = this->size();
+    char* end = cstring + string_length;
     return String::iterator(end);
 }
 
@@ -157,6 +158,16 @@ String::iterator String::iterator::operator-- (int){
     String::iterator copy(ptr);
     --ptr;
     return copy;
+}
+
+String::iterator& String::iterator::operator+= (int n){
+    ptr += n;
+    return *this;
+}
+
+String::iterator& String::iterator::operator-= (int n){
+    ptr -= n;
+    return *this;
 }
 
 bool String::iterator::operator == (const String::iterator& rhs) const{

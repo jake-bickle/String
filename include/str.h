@@ -64,6 +64,9 @@ class String{
                 iterator operator++ (int); // Postfix ++
                 iterator& operator-- ();
                 iterator operator-- (int);
+                iterator& operator+= (int n);
+                iterator& operator-= (int n);
+
                 bool operator == (const String::iterator& rhs) const;
                 bool operator != (const String::iterator& rhs) const;
         };
