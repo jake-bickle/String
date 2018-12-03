@@ -366,14 +366,4 @@ TEST_CASE("Moving iterator forward and backward", "[string], [iterator]")
         --it;
         REQUIRE(*it == '!');
     }
-
-    SECTION("++ operator throws if past end()")
-    {
-        // TODO
-    }
-
-    SECTION("-- operator throws if past begin()")
-    {
-        // TODO
-    }
 }
