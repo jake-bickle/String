@@ -282,3 +282,124 @@ TEST_CASE("Assignment operator", "[string], [assignment]")
         REQUIRE (str == "Goodbye, cruel world!");
     }
 }
+
+
+TEST_CASE("Derefrencing an iterator", "[string], [iterator], [dereference]")
+{
+    SECTION("Derefrencing an iterator at beginning of string")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        REQUIRE(*it == 'H');
+    }
+
+    SECTION("Derefrencing an iterator in the middle of the string")
+    {
+        // TODO
+    }
+
+    SECTION("Derefrencing an iterator past the end raises error")
+    {
+        // TODO
+    }
+}
+
+TEST_CASE("Iterator comparisons", "[string], [itrator], [comparison]")
+{
+    SECTION("begin() is equal to the first character of the array")
+    {
+        String str("Hello");
+        String::iterator it = str.begin();
+        REQUIRE(it == str.begin());
+        REQUIRE(*it == 'H');
+    }
+
+    SECTION("begin() is equal to end() when array is empty")
+    {
+        String str;
+        String::iterator beg = str.begin();
+        String::iterator end = str.end();
+        REQUIRE(beg == end);
+    }
+}
+
+TEST_CASE("Moving iterator forward and backward", "[string], [iterator]")
+{
+    SECTION("Prefix ++ operator points to correct location from beginning of string")
+    {
+        String str("Hello!");
+        String::iterator it = str.begin();
+        ++it;
+        REQUIRE(*it == 'e');
+    }
+
+    SECTION("Postfix ++ operator creates a copy and points to correct location from beginning of string")
+    {
+        String str("Hello!");
+        String::iterator it = str.begin();
+        REQUIRE(*(it++) == 'H');
+        REQUIRE(*it == 'e');
+    }
+
+    SECTION("Prefix -- operator points to correct location at the beginning of the string")
+    {
+        String str("Hello!");
+        String::iterator it = str.begin();
+        ++it;
+        --it;
+        REQUIRE(*it == 'H');
+    }
+
+    SECTION("Postfix -- operator creates a copy and points to correct location at the beginning of the string")
+    {
+        String str("Hello!");
+        String::iterator it = str.begin();
+        ++it;
+        REQUIRE(*(it--) == 'e');
+        REQUIRE(*it == 'H');
+    }
+
+    SECTION("Prefix -- operator points to correct location from end of string")
+    {
+        String str("Hello!");
+        String::iterator it = str.end();
+        --it;
+        REQUIRE(*it == '!');
+    }
+
+    SECTION("+= operator points to correct location")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        it += 4;
+        REQUIRE(*it == 'o');
+    }
+
+    SECTION("-= operator points to correct location")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.end();
+        it -= 4;
+        REQUIRE(*it == 'r');
+    }
+}
+
+TEST_CASE("Using iterators to modify String", "[string], [iterator], [modifier]")
+{
+    SECTION("Modifying the first letter of the String")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        *it = 'M';
+        REQUIRE(str == "Mello, world!");
+    }
+
+    SECTION("Modfiying the fourth letter of the String")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        it += 3;
+        *it = 'M';
+        REQUIRE(str == "HelMo, world!");
+    }
+}

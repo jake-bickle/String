@@ -51,6 +51,15 @@ std::vector<String> String::split(const char* delimeter) const{
     return this->split(String(delimeter));
 }
 
+// TODO : Return to this after creating iterator class
+//String String::lower() const{
+    //String copy(cstring);
+    //for (char& letter : copy.cstring ){
+        //letter = lower_case_ascci_value(letter);
+    //}
+    //return copy;
+//}
+
 bool String::contains(const String& characters) const{
     return this->contains(characters.cstring);
 }
@@ -112,3 +121,59 @@ bool String::operator>= (const char* rhs) const{
     return !((*this < String(rhs)));
 }
 
+String::iterator String::begin() const{
+    return String::iterator(cstring);
+}
+
+String::iterator String::end() const{
+    unsigned int string_length = this->size();
+    char* end = cstring + string_length;
+    return String::iterator(end);
+}
+
+String::iterator::iterator(char* ptr)
+    : ptr(ptr) {}
+
+char& String::iterator::operator* (){
+    return *ptr;
+}
+
+String::iterator& String::iterator::operator++ (){
+    ++ptr;
+    return *this;
+}
+
+String::iterator String::iterator::operator++ (int){
+    String::iterator copy(ptr);
+    ++ptr;
+    return copy;
+} 
+
+String::iterator& String::iterator::operator-- (){
+    --ptr;
+    return *this;
+}
+
+String::iterator String::iterator::operator-- (int){
+    String::iterator copy(ptr);
+    --ptr;
+    return copy;
+}
+
+String::iterator& String::iterator::operator+= (int n){
+    ptr += n;
+    return *this;
+}
+
+String::iterator& String::iterator::operator-= (int n){
+    ptr -= n;
+    return *this;
+}
+
+bool String::iterator::operator == (const String::iterator& rhs) const{
+    return (ptr == rhs.ptr);
+}
+
+bool String::iterator::operator != (const String::iterator& rhs) const{
+    return !(*this == rhs);
+}
