@@ -3,7 +3,6 @@
 
 #include <cstring>
 #include <iostream>
-#include <iterator>
 #include <vector>
 
 class String{
@@ -13,9 +12,6 @@ class String{
         void assign_cstring(const char* copy_from);
         int lower_case_ascci_value(const char& letter) const;
     public:
-
-        typedef String::iterator iterator;
-        typedef String::const_iterator const_iterator;
 
         String();
         String(const String& str);
@@ -57,7 +53,7 @@ class String{
         iterator begin() const;
         iterator end() const;
 
-        class iterator : public iterator<random_iterator_tag, int>{
+        class iterator{
             private:
                 char* ptr;
 
@@ -71,6 +67,6 @@ class String{
                 bool operator == (const String::iterator& rhs) const;
                 bool operator != (const String::iterator& rhs) const;
         };
-    };
+};
 
 #endif

@@ -282,3 +282,23 @@ TEST_CASE("Assignment operator", "[string], [assignment]")
         REQUIRE (str == "Goodbye, cruel world!");
     }
 }
+
+TEST_CASE("Derefrencing an iterator", "[string], [iterator], [dereference]")
+{
+    SECTION("Derefrencing an iterator at beginning of string")
+    {
+        String str("Hello, world!");
+        String::iterator it = str.begin();
+        REQUIRE(*it == 'H');
+    }
+
+    SECTION("Derefrencing an iterator in the middle of the string")
+    {
+        // TODO
+    }
+
+    SECTION("Derefrencing an iterator past the end raises error")
+    {
+        // TODO
+    }
+}

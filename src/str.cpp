@@ -121,15 +121,19 @@ bool String::operator>= (const char* rhs) const{
     return !((*this < String(rhs)));
 }
 
-//String::iterator String::begin() const{
-    //return String::iterator(cstring);
-//}
+String::iterator String::begin() const{
+    return String::iterator(cstring);
+}
 
 //String::iterator String::end() const{
     //// TODO
 //}
 
-//String::iterator(char* ptr)
-    //: ptr(ptr) {}
+String::iterator::iterator(char* ptr)
+    : ptr(ptr) {}
+
+char& String::iterator::operator* (){
+    return *ptr;
+}
 
 
