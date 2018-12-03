@@ -160,6 +160,55 @@ TEST_CASE("String contains characters", "[string], [operations], [contains]")
     }
 }
 
+TEST_CASE("Lower casing a string", "[string], [operations]")
+{
+    SECTION("String in all caps is lower-cased")
+    {
+        String str("HELLO WORLD");
+        String lower = str.lower();
+        REQUIRE(lower == "hello world");
+    }
+
+    SECTION("String in all lower cases is lower-cased")
+    {
+        String str("hello world");
+        String lower = str.lower();
+        REQUIRE(lower == "hello world");
+    }
+
+    SECTION("String with symbols and numbers is lower-cased")
+    {
+        String str("HeLlO, WoRlD! 123 %&$*");
+        String lower = str.lower();
+        REQUIRE(lower == "hello, world! 123 %&$*");
+    }
+}
+
+TEST_CASE("Upper casing a string", "[string], [operations]")
+{
+
+    SECTION("String in all lower cases is upper-cased")
+    {
+        String str("hello world");
+        String lower = str.upper();
+        REQUIRE(lower == "HELLO WORLD");
+    }
+
+    SECTION("String in all caps is upper-cased")
+    {
+        String str("HELLO WORLD");
+        String upper = str.upper();
+        REQUIRE(upper == "HELLO WORLD");
+    }
+
+    SECTION("String with symbols and numbers is upper-cased")
+    {
+        String str("HeLlO, WoRlD! 123 %&$*");
+        String lower = str.upper();
+        REQUIRE(lower == "HELLO, WORLD! 123 %&$*");
+    }
+}
+
 TEST_CASE("Comparison operators", "[string], [comparison], [equality]")
 {
     SECTION("Strings are equal to each other")

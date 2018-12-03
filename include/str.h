@@ -11,6 +11,7 @@ class String{
 
         void assign_cstring(const char* copy_from);
         int lower_case_ascci_value(const char& letter) const;
+        int upper_case_ascci_value(const char& letter) const;
     public:
 
         String();

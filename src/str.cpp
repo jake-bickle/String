@@ -51,14 +51,35 @@ std::vector<String> String::split(const char* delimeter) const{
     return this->split(String(delimeter));
 }
 
-// TODO : Return to this after creating iterator class
-//String String::lower() const{
-    //String copy(cstring);
-    //for (char& letter : copy.cstring ){
-        //letter = lower_case_ascci_value(letter);
-    //}
-    //return copy;
-//}
+String String::lower() const{
+    String copy(cstring);
+    for (char* letter = copy.cstring; letter != copy.cstring + size(); ++letter){
+        *letter = lower_case_ascci_value(*letter);
+    }
+    return copy;
+}
+
+String String::upper() const{
+    String copy(cstring);
+    for (char* letter = copy.cstring; letter != copy.cstring + size(); ++letter){
+        *letter = upper_case_ascci_value(*letter);
+    }
+    return copy;
+}
+
+int String::lower_case_ascci_value(const char& letter) const{
+    const int DIFFERENCE_OF_UPPER_TO_LOWER = 'a' - 'A';
+    if (letter > 'A' && letter <= 'Z')
+        return letter + DIFFERENCE_OF_UPPER_TO_LOWER;  
+    return letter;
+}
+
+int String::upper_case_ascci_value(const char& letter) const{
+    const int DIFFERENCE_OF_UPPER_TO_LOWER = 'a' - 'A';
+    if (letter > 'a' && letter <= 'z')
+        return letter - DIFFERENCE_OF_UPPER_TO_LOWER;  
+    return letter;
+}
 
 bool String::contains(const String& characters) const{
     return this->contains(characters.cstring);
